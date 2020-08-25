@@ -1,0 +1,43 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    New Page
+{% endblock %}
+
+{% block body %}
+<div class="col-12">
+    <form method="POST" action="">
+        {% csrf_token %}
+        <div class="row">
+        <div class="col-6">
+        <label>
+            Title:
+            <input type="text" placeholder="title" name="title"
+                {% if title is not None %}
+                    value="{{ title }}"
+                {% endif %}
+            >
+        </label>
+            {% if message is not None %}
+                <span class="text-danger">{{ message }}</span>
+            {% endif %}
+        </div>
+
+        <div class="col-4">
+            <input type="submit" value="Save Entry">
+        </div>
+        </div>
+
+        <div class="col-12">
+        
+            Content: <br>
+            <textarea name="content" placeholder="content">{% if content is not None %}
+                    {{ content }}
+                {% endif %}</textarea>
+        
+        </div>
+        
+        
+    </form>
+</div>
+{% endblock %}
